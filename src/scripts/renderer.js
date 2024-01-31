@@ -16,10 +16,21 @@ export class Renderer {
   constructor(cnv) {
     this.main = cnv;
 
-    this.gl = cnv.getContext("webgl2", {
-      antialias: false,
-      depth: false,
-    });
+    this.gl =
+      cnv.getContext("webgl2", {
+        antialias: false,
+        depth: false,
+      }) ||
+      cnv.getContext("webgl", {
+        antialias: false,
+        depth: false,
+      }) ||
+      cnv.getContext("webgl-experimental", {
+        antialias: false,
+        depth: false,
+      });
+    console.log(this.gl);
+    console.dir(this.gl);
     this.surf = document.createElement("canvas");
     this.ctx = this.surf.getContext("2d");
     this.framecount = 0;
