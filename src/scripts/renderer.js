@@ -16,7 +16,10 @@ export class Renderer {
   constructor(cnv) {
     this.main = cnv;
 
-    this.gl = cnv.getContext("webgl2");
+    this.gl = cnv.getContext("webgl2", {
+      antialias: false,
+      depth: false,
+    });
     this.surf = document.createElement("canvas");
     this.ctx = this.surf.getContext("2d");
     this.framecount = 0;
